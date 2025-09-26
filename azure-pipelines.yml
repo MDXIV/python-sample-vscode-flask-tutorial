@@ -10,16 +10,15 @@ pool: linux-agent
 
 strategy:
   matrix:
-    Python38:
-      python.version: '3.8'
-    Python39:
-      python.version: '3.9'
-    Python310:
-      python.version: '3.10'
     Python311:
       python.version: '3.11'
 
 steps:
+- task: Bash@3
+  inputs:
+    targetType: "inline"
+    script: |
+      echo "##vso[task.setvariable variable=LD_LIBRARY_PATH;]:azp/_work/_tool/Python/3.11.8/x64/lib/"
 - task: UsePythonVersion@0
   inputs:
     versionSpec: '$(python.version)'
