@@ -18,11 +18,14 @@ steps:
   inputs:
     targetType: "inline"
     script: |
-      echo "##vso[task.setvariable variable=LD_LIBRARY_PATH;]:azp/_work/_tool/Python/3.11.8/x64/lib/"
+      echo "##vso[task.setvariable variable=LD_LIBRARY_PATH;]:azp/_work/_tool/Python/3.11.13/x64/lib/"
 - task: UsePythonVersion@0
   inputs:
     versionSpec: '$(python.version)'
   displayName: 'Use Python $(python.version)'
+
+- script: |
+      echo "##vso[task.setvariable variable=LD_LIBRARY_PATH;]:azp/_work/_tool/Python/$(python.version)/x64/lib/"
 
 - script: |
     python -m pip install --upgrade pip
